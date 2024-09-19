@@ -1,3 +1,5 @@
+import JobsContainer from "components/JobBoard/JobsContainer";
+
 import GlobalStyles from "styles/global";
 
 function App() {
@@ -5,7 +7,7 @@ function App() {
     <>
       <GlobalStyles />
 
-      <h1>Hello World</h1>
+      <JobsContainer />
     </>
   );
 }
