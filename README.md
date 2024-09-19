@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Requirements
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The page should show 6 jobs on initial load with a button to load more postings.
+Clicking on the "Load more" button will load the next page of 6 postings. The button does not appear if there aren't any more postings to load.
 
-## Available Scripts
+If there's a url field returned for the job details, make the job title a link that opens the job details page in a new window when clicked.
+The timestamp can be formatted in any way you like.
 
-In the project directory, you can run:
+## API
 
-### `yarn start`
+Hacker News has a public API to fetch jobs by Y Combinator companies. There's no single API that fetches a list of jobs together with the data, so you will have to make separate requests to fetch the necessary data and combine them to be displayed.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Job Stories
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Fetches a list of job posting IDs.
 
-### `yarn test`
+URL: https://hacker-news.firebaseio.com/v0/jobstories.json
+HTTP Method: GET
+Content Type: json
+Sample response:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[35908337, 35904973, 35900922, 35893439, 35890114, 35880345, ...]
 
-### `yarn build`
+## Job Details
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Fetches job posting details given its ID.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+URL: https://hacker-news.firebaseio.com/v0/item/{id}.json
+HTTP Method: GET
+Content Type: json
+Sample response for https://hacker-news.firebaseio.com/v0/item/35908337.json:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+{
+"by": "jamilbk",
+"id": 35908337,
+"score": 1,
+"time": 1683838872,
+"title": "Firezone (YC W22) is hiring Elixir and Rust engineers",
+"type": "job",
+"url": "https://www.ycombinator.com/companies/firezone/jobs"
+}
 
-### `yarn eject`
+## Notes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The focus of this question is on functionality and not on styling, but feel free to beautify the page.
+To improve the user experience and avoid overfetching, you may want to limit the number of job details fetched to the number of jobs visible on the page.
