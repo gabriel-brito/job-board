@@ -9,3 +9,13 @@ export const getIdList = async () => {
     console.error(error);
   }
 };
+
+export const getJob = async (id) => {
+  try {
+    const response = await Service.get(`/item/${id}.json`);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
