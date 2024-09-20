@@ -8,7 +8,7 @@ export default function JobInfo({ job = mock }) {
 
   return (
     <S.Wrapper>
-      <S.Anchor href={job.url}>
+      <S.Anchor href={job.url} target="_blank">
         <S.Title>{job.title}</S.Title>
 
         <S.Info>
