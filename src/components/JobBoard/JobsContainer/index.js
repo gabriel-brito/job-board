@@ -34,15 +34,10 @@ export default function JobsContainer() {
       const jobList = await Promise.all(
         currentIds.map((jobId) => getJob(jobId).then((data) => data))
       )
-        .then((values) => {
-          console.log("here");
-          return values;
-        })
+        .then((values) => values)
         .catch((error) => console.error(error));
 
       const newJobList = [...jobs, ...jobList];
-
-      console.log(newJobList);
 
       setJobs(newJobList);
 
